@@ -39,7 +39,17 @@ const CustomTooltip = withStyles((theme) => ({
   },
 }))(Tooltip);
 
+function BasicTextFields(props) {
+  return (
+    <TextField
+      placeholder="0"
+      InputProps={inputProps}
+      onChange={(e) => { props.function(props.index, e); system.log(e) }}
+      style={{ width: "70px" }}
+    />
 
+  );
+}
 
 function InputColumn(props) {
 
@@ -98,6 +108,8 @@ function Circle(props) {
 
 /* App */
 function App() {
+
+  
 
   // initialization
   let data1 = [
