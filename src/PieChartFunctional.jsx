@@ -7,7 +7,7 @@ function PieChartFunctional (props) {
   console.log("props",props.data);
   
     // gets connected to svg drawn by React by variable name and its ref attribute
-    let d3Container = useRef(null);
+    let d3Container = React.createRef(null);
     
     let dimensions = ({
       width: props.width ? props.width : 200,
@@ -16,8 +16,6 @@ function PieChartFunctional (props) {
     });
  
     const data = [...props.data];
-
-    const name = "piechart-"+props.name;
     
     let pie = d3.pie()
                 .sort(null)
@@ -39,7 +37,7 @@ function PieChartFunctional (props) {
     let chartSvg = d3.select(d3Container.current);
 
     chartSvg.append('g')
-      .attr('id', name)
+      .attr('id', "pieChart-"+props.name)
       .attr('class', 'chart-content')
       .attr('transform', `translate(
       ${dimensions.width / 2 + dimensions.padding},
@@ -65,7 +63,7 @@ function PieChartFunctional (props) {
 
     const arcs = pie(data);
 
-    const g = d3.select("#"+name);
+    const g = d3.select("#pieChart-"+props.name);
     g.selectAll('path')
         .data(arcs)
         .join('path')
@@ -89,12 +87,12 @@ function PieChartFunctional (props) {
       .transition().duration(200)
       .attr('transform', 'scale(1.1)')
 
-    const g = d3.select("#"+name);
+    const g = d3.select("#pieChart-"+props.name);
     g.select('#chart-tooltip').remove();
     g.append('text')
         .attr('x', pointer[0])
         .attr('y', pointer[1] - 20)
-        .attr('fill', getColorValue(d.data.color) > 150 ? '#000000' : '#ffffff')
+        .attr('fill', 'fill', getColorValue(d.data.color) > 150 ? '#000000' : '#ffffff')
         .attr('text-anchor', 'middle')
         .attr('id', 'chart-tooltip')
         .text(`${d.data.name} ${d.data.value.toFixed(2)}%`);

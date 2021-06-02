@@ -1,14 +1,16 @@
-//export default Circle;
-/*
-import React, { useRef, useEffect, useState } from 'react';
+class MyInput extends Component {
+  constructor() {
+    super();
+    this.state = {value: ""};
+  }
 
-class Circle extends React.Component{
-  render(){
+  update = (e) => {
+    this.setState({value: e.target.value});
+  }
+
+  render() {
     return (
-      <svg>
-        <circle r = '40' cy = '10' cx = '10'/>
-      </svg>
+      <input onChange={this.update} value={this.state.value} />
     );
   }
 }
-export default Circle;*/

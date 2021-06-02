@@ -1,15 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-class Circle extends React.Component{
-  render(){
-    return (
-      <svg>
-        <circle r = '40' cy = '10' cx = '10'/>
-      </svg>
-    );
-  }
-}
-class PieChartClass extends React.Component {
+
+class PieChart extends React.Component {
   constructor(props) {
     super(props);
     this.d3Container = React.createRef();
@@ -95,6 +87,7 @@ class PieChartClass extends React.Component {
       .attr('text-anchor', 'middle')
       .attr('id', 'chart-tooltip')
       .text(`${d.data.name} ${d.data.value.toFixed(2)}%`);
+		console.log(d.data.value)
   }
 
   onSliceOut(event, d) {
@@ -132,4 +125,4 @@ class PieChartClass extends React.Component {
   }
 }
 
-export default PieChartClass;
+export default PieChart;

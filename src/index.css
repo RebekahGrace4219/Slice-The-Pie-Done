@@ -87,3 +87,15 @@ code {
   display: flex;
   align-items: center;
 }
+
+body {
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  align-self: center !important;
+}
