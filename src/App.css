@@ -1,0 +1,21 @@
+main {
+  text-align: center;
+  vertical-align: center;
+}
+
+div {
+  margin: 10px;
+}
+
+#text {
+  text-align: justify;
+}
+
+#header{
+  text-align: center;
+}
+
+.bigchungus {
+  font-size: 100;
+  color: red;
+}

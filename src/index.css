@@ -1,0 +1,89 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.bigchungus {
+  flex-direction: column-reverse;
+  font-size: 0;
+  width: 2;
+}
+
+._2JvrO {
+  z-index: 1;
+  background-color: #387cf6 !important;
+  color: #387cf6 !important;
+}
+
+._2JvrO > svg {
+  z-index: 1;
+  background-color: #387cf6 !important;
+  color: #387cf6 !important;
+  display: none;
+}
+
+._2ZUAI::before {
+    
+    background: #387cf6 !important;
+    transition: background-position 200ms ease-in-out;
+    
+}
+
+._35Ago::before {
+  background: #387cf6 !important;
+}
+
+._2Jtxm._2ZUAI ._2JvrO {
+  background-color: #387cf6 !important;
+  color: #387cf6 !important;
+}
+
+._2Jtxm._2ZUAI ._2JvrO {
+  background-color: #387cf6 !important;
+}
+
+.progress-step.completed .step-icon:hover .progress-step.current .progress-step, .step-index,
+.progress-step .step-icon{
+  display: none;
+  background-color: #387cf6;
+}
+
+._53Ji7 {
+  padding: 0px !important;
+}
+
+._2_g61 {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+
+.InputRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Inputtext {
+  font-family: sans-serif;
+  font-size: 15px;
+}
+.textField {
+  align-self: flex-end !important;
+}
+
+.leftItems {
+  display: flex;
+  align-items: center;
+}
