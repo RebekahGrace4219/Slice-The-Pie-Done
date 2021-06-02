@@ -45,7 +45,7 @@ function BasicTextFields(props) {
       placeholder="0"
       InputProps={inputProps}
       onChange={(e) => { console.log(e.target.value);props.function(props.index, e.target.value);  }}
-      style={{ width: "70px" }}
+      style={{ width: "75px" }}
     />
   );
 }
@@ -210,9 +210,14 @@ function App() {
 
   ]);
 
+  const resetRevenue = [];
+  const resetExpenditures = [];
+
   const [page, updatePage] = React.useState(0);
 
+
   function changeRevenue(index, value) {
+
     revenue[index].value = Number(value);
     console.log(revenue[index]);
     let tempRevenue = [];
@@ -235,6 +240,8 @@ function App() {
   }
 
   function resetCharts(){
+    updateRevenue(resetRevenue);
+    updateExpenditures(resetExpenditures);
     
   }
   
