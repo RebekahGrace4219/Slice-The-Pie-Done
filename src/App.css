@@ -3,6 +3,19 @@ main {
   vertical-align: center;
 }
 
+.parentDiv{
+  width: 90vw;
+  max-width: 600px;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+}
 div {
   margin: 10px;
 }
@@ -19,3 +32,153 @@ div {
   font-size: 100;
   color: red;
 }
+
+.titleHeading{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  font-weight: 600;
+}
+
+.InputRow{
+  margin: 0 auto;
+  font-weight: 600;
+}
+p{
+  margin: 0 auto;
+}
+h4{
+  text-align: center;
+  font-size: 1.4em;
+}
+h2{
+  width: 100%;
+  text-align: center;
+}
+
+h3{
+  width: 100%;
+  text-align: center;
+  margin: 40px 0px;
+}
+.buttonDiv{
+  display: flex;
+  flex-wrap: no-wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  margin-top: 20pt;
+}
+
+
+
+/*Need to add padding*/
+.compareButton{
+  border-radius: 25pt !important;
+  height: 25pt;
+  width: 90pt !important;
+  font-weight: 600;
+  margin: 0 auto;
+  box-shadow: 0px;
+  border: 0px;
+  color: black;
+  background-color: #71A8FF !important;
+
+}
+
+.previousSeparator{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  padding-top:20px;
+  margin: 0 auto;
+}
+.previousButton{
+  border-radius: 25pt !important;
+  height: 25pt;
+  width: 90pt !important;
+  font-weight: 600  !important;
+  margin: 0 auto;
+  box-shadow: 0px;
+  border: 0px;
+  color: white;
+  background: grey;
+}
+
+.nextButton{
+  border-radius: 25pt !important;
+  height: 25pt;
+  width: 90pt !important;
+  font-weight: 600;
+  margin: 0 auto;
+  box-shadow: 0px;
+  border: 0px;
+  background-color: white;
+  color: black;
+}
+
+.restartButton{
+  border-radius: 25pt !important;
+  height: 25pt;
+  width: 100pt !important;
+  font-weight: 600;
+  margin: 0 auto;
+  box-shadow: 0px;
+  border: 0px;
+    background-color: white;
+  color: black;
+}
+
+.centerPie{
+  display: flex;
+  justify-content: center;
+}
+
+.pie-chart{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.totalsText{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin: 0 auto !important;
+}
+
+.labelTotal{
+  width: 60px;
+  margin-left: 0  !important;
+  margin-right: 0 !important;
+  font-weight: 600;
+  margin-bottom: 9px;
+}
+
+.container{
+  margin: 0 auto;
+  width: 100%;
+}
+
+.progressBarWords{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:nowrap;
+  font-weight: 600;  
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 15px;
+  font-size: 0.8em;
+}
+
+.progressBarWord{
+  width: 33%;
+}
+

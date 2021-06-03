@@ -18,7 +18,6 @@
   position: relative;
   text-align: center;
   flex: 1 1 auto;
-  position: relative;
 }
 
 .progress-step::before {

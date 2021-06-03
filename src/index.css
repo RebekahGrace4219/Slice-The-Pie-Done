@@ -88,14 +88,103 @@ code {
   align-items: center;
 }
 
-body {
-  max-width: 500px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
 
 #root {
   display: flex;
   align-self: center !important;
+}
+
+.kek {
+  color: white !important;
+  text-align: center !important;
+  
+}
+
+p.MuiTypography-root.MuiTypography-body1.MuiTypography-colorTextSecondary {
+    color: white;
+}
+
+
+
+.MuiInput-underline:after {
+  border-bottom: 2px solid #3f51b5 !important;
+}
+
+.MuiInput-underline:before {
+  border-bottom: 2px solid white !important;
+}
+
+input.MuiInputBase-input.MuiInput-input {
+    text-align: center;
+    color: white;
+}
+
+.container{
+  width: 100%;
+  height: 60px;
+  z-index: 1;
+}
+.progressbar li{
+  float: left;
+  width: 33%;
+  position: relative;
+  text-align: center;
+  list-style-type: none;
+}
+
+.progressBar ol{
+  direction: ltr;
+}
+
+.progressbar li:first-child:before{
+content: none;
+}
+
+
+.progressbar li:after{
+  content: "";
+  width: 25px;
+  height: 25px;
+  border: 0px;
+  display: block;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  line-height: 27px;
+  background: #7F8187;
+  color: #bebebe;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px;
+}
+
+.progressbar li:before{
+  content: '';
+  position: absolute;
+  width:100%;
+  height: 5px;
+  background: #7F8178;
+  top: 36px;
+  left: -50%;
+  z-index: -1;
+}
+
+.progressbar li.completed + li:after{
+ border-color: #71A8FF;
+ background: #71A8FF;
+color: white
+}
+.progressbar li.completed + li:before{
+border-color: #71A8FF;
+background: #71A8FF;
+color: white
+}
+
+.progressCircle{
+  width: 33%;
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  padding-top: 5px;
+  
+
 }
