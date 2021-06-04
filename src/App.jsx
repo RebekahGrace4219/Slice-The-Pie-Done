@@ -74,7 +74,7 @@ function BasicTextFields(props) {
   }
 
   let enterValue = props.value;
-  if (props.value == 0) {
+  if (props.value == "0%") {
     enterValue = "";
   }
 
@@ -86,27 +86,32 @@ function BasicTextFields(props) {
       value={enterValue}
       onChange={(e) => { console.log(e.target.value);
       console.log("props.value " , props.value);
+
+      let lastItemNoPercent = Number(props.value.replaceAll('%', ''));
+      let currentItemNoPercent = e.target.value.replaceAll('%', '');
+
+      if(props.value.includes("%") && !e.target.value.includes("%") && props.value.length-e.target.value.length == 1 && props.value != '0%') {
+        currentItemNoPercent = currentItemNoPercent.substring(0, currentItemNoPercent.length - 1);
+      }
+
+      currentItemNoPercent = Number(currentItemNoPercent);
+
     
-      let inputPercent = Number(e.target.value);
-      console.log("HERE", typeof inputPercent);
+      let inputPercent = Number(currentItemNoPercent);
+      console.log("HERE", inputPercent, props.percent, lastItemNoPercent);
       
       if (isNaN(inputPercent)) {
-        inputPercent = props.value;
+        inputPercent = lastItemNoPercent;
       }
       let totalPercent = props.percent;
-      if (totalPercent + inputPercent - props.value > 100) {
-        inputPercent = 100 - totalPercent + props.value;
+      if (totalPercent + inputPercent - lastItemNoPercent > 100) {
+        inputPercent = 100 - totalPercent + lastItemNoPercent;
         totalPercent = 100;
       } 
       else{
-        totalPercent = totalPercent + inputPercent - props.value;
+        totalPercent = totalPercent + inputPercent - lastItemNoPercent;
       }
 
-      console.log("totalPercent " , totalPercent);
-      
-      //inputPercent = toString(inputPercent) + "%";
-
-      console.log("input Percentage is, with percent attached, ", inputPercent);
       props.function(props.index, inputPercent, totalPercent);
       }}
       style={{ width: "70px", textAlign: 'center' }}
@@ -171,19 +176,28 @@ function PageOne(props) {
   let revenueInfo = props.revenueInfo
   let revenuePercent = props.revenuePercent;
   return (<div className="pages">
+
+      <div className = "progressBarWords">
+        <p className = "coloredBlue">REVENUES</p>
+        <p className = "coloredWhite">EXPENSES</p>
+        <p className = "coloredWhite">COMPARE</p>
+      </div>
+      <ProgressBar1/>
+
+
     <h3>UC Davis Revenues</h3>
     <div className = "centerPie">
     <PieChartFunctional className="pieCenter" name="pie1" data={revenue} />
     </div>
     <div className = "titleHeading"><div className = "word" ><p>Function</p></div><div><p>Percentage (%)</p></div></div>
-    <InputRow name={revenue[0].name} color={revenue[0].color} info={revenueInfo[0]} index={0} function={changeRevenue} value = {revenue[0].value} percent = {revenuePercent} />
-    <InputRow name={revenue[1].name} color={revenue[1].color} info={revenueInfo[1]} index={1} function={changeRevenue} value = {revenue[1].value} percent = {revenuePercent} />
-    <InputRow name={revenue[2].name} color={revenue[2].color} info={revenueInfo[2]} index={2} function={changeRevenue} value = {revenue[2].value} percent = {revenuePercent} />
-    <InputRow name={revenue[3].name} color={revenue[3].color} info={revenueInfo[3]} index={3} function={changeRevenue} value = {revenue[3].value} percent = {revenuePercent} />
-    <InputRow name={revenue[4].name} color={revenue[4].color} info={revenueInfo[4]} index={4} function={changeRevenue} value = {revenue[4].value} percent = {revenuePercent} />
-    <InputRow name={revenue[5].name} color={revenue[5].color} info={revenueInfo[5]} index={5} function={changeRevenue} value = {revenue[5].value} percent = {revenuePercent} />
-    <InputRow name={revenue[6].name} color={revenue[6].color} info={revenueInfo[6]} index={6} function={changeRevenue} value = {revenue[6].value} percent = {revenuePercent} />
-    <InputRow name={revenue[7].name} color={revenue[7].color} info={revenueInfo[7]} index={7} function={changeRevenue} value = {revenue[7].value} percent = {revenuePercent} />
+    <InputRow name={revenue[0].name} color={revenue[0].color} info={revenueInfo[0]} index={0} function={changeRevenue} value = {revenue[0].percent} percent = {revenuePercent} />
+    <InputRow name={revenue[1].name} color={revenue[1].color} info={revenueInfo[1]} index={1} function={changeRevenue} value = {revenue[1].percent} percent = {revenuePercent} />
+    <InputRow name={revenue[2].name} color={revenue[2].color} info={revenueInfo[2]} index={2} function={changeRevenue} value = {revenue[2].percent} percent = {revenuePercent} />
+    <InputRow name={revenue[3].name} color={revenue[3].color} info={revenueInfo[3]} index={3} function={changeRevenue} value = {revenue[3].percent} percent = {revenuePercent} />
+    <InputRow name={revenue[4].name} color={revenue[4].color} info={revenueInfo[4]} index={4} function={changeRevenue} value = {revenue[4].percent} percent = {revenuePercent} />
+    <InputRow name={revenue[5].name} color={revenue[5].color} info={revenueInfo[5]} index={5} function={changeRevenue} value = {revenue[5].percent} percent = {revenuePercent} />
+    <InputRow name={revenue[6].name} color={revenue[6].color} info={revenueInfo[6]} index={6} function={changeRevenue} value = {revenue[6].percent} percent = {revenuePercent} />
+    <InputRow name={revenue[7].name} color={revenue[7].color} info={revenueInfo[7]} index={7} function={changeRevenue} value = {revenue[7].percent} percent = {revenuePercent} />
     <TotalRow percent = {revenuePercent}/>
     <div className="buttonDiv">
       <button type="button" className="pageButton" className="nextButton" onClick={props.pageUp}> Next </button>
@@ -199,20 +213,27 @@ function PageTwo(props) {
   let expenditureInfo = props.expenditureInfo
   let expenditurePercent = props.expenditurePercent;
   return (<div className="pages">
+    <div className = "progressBarWords">
+        <p className = "coloredBlue">REVENUES</p>
+        <p className = "coloredBlue">EXPENSES</p>
+        <p className = "coloredWhite">COMPARE</p>
+      </div>
+      <ProgressBar2/>
+
     <h3>UC Davis Expenditures</h3>
     <div className = "centerPie">
     <PieChartFunctional className="pieCenter" name="pie2" data={expenditures} />
     </div>
     <div className = "titleHeading"><div className = "word" ><p>Function</p></div><div><p>Percentage (%)</p></div></div>
-    <InputRow name={expenditures[0].name} color={expenditures[0].color} info={expenditureInfo[0]} index={0} function={changeExpenditures} value = {expenditures[0].value} percent = {expenditurePercent} />
-    <InputRow name={expenditures[1].name} color={expenditures[1].color} info={expenditureInfo[1]} index={1} function={changeExpenditures} value = {expenditures[1].value} percent = {expenditurePercent} />
-    <InputRow name={expenditures[2].name} color={expenditures[2].color} info={expenditureInfo[2]} index={2} function={changeExpenditures} value = {expenditures[2].value} percent = {expenditurePercent} />
-    <InputRow name={expenditures[3].name} color={expenditures[3].color} info={expenditureInfo[3]} index={3} function={changeExpenditures} value = {expenditures[3].value} percent = {expenditurePercent} />
-    <InputRow name={expenditures[4].name} color={expenditures[4].color} info={expenditureInfo[4]} index={4} function={changeExpenditures} value = {expenditures[4].value} percent = {expenditurePercent} />
-    <InputRow name={expenditures[5].name} color={expenditures[5].color} info={expenditureInfo[5]} index={5} function={changeExpenditures} value = {expenditures[5].value} percent = {expenditurePercent} />
-    <InputRow name={expenditures[6].name} color={expenditures[6].color} info={expenditureInfo[6]} index={6} function={changeExpenditures} value = {expenditures[6].value} percent = {expenditurePercent} />
-    <InputRow name={expenditures[7].name} color={expenditures[7].color} info={expenditureInfo[7]} index={7} function={changeExpenditures} value = {expenditures[7].value} percent = {expenditurePercent} />
-    <InputRow name={expenditures[8].name} color={expenditures[8].color} info={expenditureInfo[8]} index={8} function={changeExpenditures} value = {expenditures[8].value} percent = {expenditurePercent} />
+    <InputRow name={expenditures[0].name} color={expenditures[0].color} info={expenditureInfo[0]} index={0} function={changeExpenditures} value = {expenditures[0].percent} percent = {expenditurePercent} />
+    <InputRow name={expenditures[1].name} color={expenditures[1].color} info={expenditureInfo[1]} index={1} function={changeExpenditures} value = {expenditures[1].percent} percent = {expenditurePercent} />
+    <InputRow name={expenditures[2].name} color={expenditures[2].color} info={expenditureInfo[2]} index={2} function={changeExpenditures} value = {expenditures[2].percent} percent = {expenditurePercent} />
+    <InputRow name={expenditures[3].name} color={expenditures[3].color} info={expenditureInfo[3]} index={3} function={changeExpenditures} value = {expenditures[3].percent} percent = {expenditurePercent} />
+    <InputRow name={expenditures[4].name} color={expenditures[4].color} info={expenditureInfo[4]} index={4} function={changeExpenditures} value = {expenditures[4].percent} percent = {expenditurePercent} />
+    <InputRow name={expenditures[5].name} color={expenditures[5].color} info={expenditureInfo[5]} index={5} function={changeExpenditures} value = {expenditures[5].percent} percent = {expenditurePercent} />
+    <InputRow name={expenditures[6].name} color={expenditures[6].color} info={expenditureInfo[6]} index={6} function={changeExpenditures} value = {expenditures[6].percent} percent = {expenditurePercent} />
+    <InputRow name={expenditures[7].name} color={expenditures[7].color} info={expenditureInfo[7]} index={7} function={changeExpenditures} value = {expenditures[7].percent} percent = {expenditurePercent} />
+    <InputRow name={expenditures[8].name} color={expenditures[8].color} info={expenditureInfo[8]} index={8} function={changeExpenditures} value = {expenditures[8].percent} percent = {expenditurePercent} />
     <TotalRow percent = {expenditurePercent}/>
     <div className="buttonDiv">
       <button type="button" className="pageButton" className="compareButton" onClick={props.pageUp}> Compare </button>
@@ -226,6 +247,12 @@ function PageTwo(props) {
 function PageThree(props) {
   return (
     <div>
+      <div className = "progressBarWords">
+        <p className = "coloredBlue">REVENUES</p>
+        <p className = "coloredBlue">EXPENSES</p>
+        <p className = "coloredBlue">COMPARE</p>
+      </div>
+      <ProgressBar3/>
       <h4>RESULTS</h4>
       <h3>Your Revenue Guess</h3>
       <div className = "centerPie">
@@ -245,6 +272,12 @@ function PageThree(props) {
 function PageFour(props) {
   return (
     <div>
+      <div className = "progressBarWords">
+        <p className = "coloredBlue">REVENUES</p>
+        <p className = "coloredBlue">EXPENSES</p>
+        <p className = "coloredBlue">COMPARE</p>
+      </div>
+      <ProgressBar3/>
        <h4>RESULTS</h4>
       <h3>Your Expenses Guess</h3>
       <div className = "centerPie">
@@ -286,23 +319,53 @@ function PageHolder(props) {
   return (<div className="Pageholder">{contents}</div>);
 }
 
-function ProgressBar (props) {
+function ProgressBar1 (props) {
   let stageOne = props.stageOne;
   let stageTwo = props.stageTwo;
   let stageThree = props.stageThree;
 
   return (
     <div className="container">
-          <ol className="progressbar">
-            <li id = "list1" className="progressCircle"></li>
-            <li id = "list2" className="progressCircle"></li>
-            <li id = "list3" className="progressCircle"></li>
-          </ol>
+          <ul className="progressbar">
+            <li id = "bar1Item1" className = "active"></li>
+            <li></li>
+            <li></li>
+          </ul>
       </div>
-  );
-    
+  );  
 }
 
+function ProgressBar2 (props) {
+  let stageOne = props.stageOne;
+  let stageTwo = props.stageTwo;
+  let stageThree = props.stageThree;
+
+  return (
+    <div className="container">
+          <ul className="progressbar">
+            <li id = "bar2Item1" className = "active"></li>
+            <li id = "bar2Item2" className = "active"></li>
+            <li></li>
+          </ul>
+      </div>
+  );  
+}
+
+function ProgressBar3 (props) {
+  let stageOne = props.stageOne;
+  let stageTwo = props.stageTwo;
+  let stageThree = props.stageThree;
+
+  return (
+    <div className="container">
+          <ul className="progressbar">
+            <li id = "bar3Item1" className = "active"></li>
+            <li id = "bar3Item2" className = "active"></li>
+            <li className = "active"></li>
+          </ul>
+      </div>
+  );  
+}
 
 function Circle(props) {
   return (<svg height="21" width="25">
@@ -342,51 +405,51 @@ function App() {
   ];
 
   const [revenue, updateRevenue] = React.useState([
-    { name: 'Medical Center', value: "", color: '#f0bf00' },
-    { name: 'Student Fees', value: "", color: '#f6e50e' },
-    { name: 'State of California', value: "", color: '#fff688' },
-    { name: 'Tuition', value: "", color: '#5F63EC' },
-    { name: 'Research Grants and Contracts', value: "", color: '#71A8FF' },
-    { name: 'Pell Grants', value: "", color: '#0F7AB4' },
-    { name: 'Non-Educational Services', value: "", color: '#D4E4FF' },
-    { name: 'Gifts, Endowments, Interest, etc', value: "", color: '#FFFFFF' }
+    { name: 'Medical Center', value: "", color: '#f0bf00', percent: "" },
+    { name: 'Student Fees', value: "", color: '#f6e50e', percent: "" },
+    { name: 'State of California', value: "", color: '#fff688', percent: "" },
+    { name: 'Tuition', value: "", color: '#5F63EC', percent: "" },
+    { name: 'Research Grants and Contracts', value: "", color: '#71A8FF', percent: "" },
+    { name: 'Pell Grants', value: "", color: '#0F7AB4', percent: "" },
+    { name: 'Non-Educational Services', value: "", color: '#D4E4FF', percent: "" },
+    { name: 'Gifts, Endowments, Interest, etc', value: "", color: '#FFFFFF', percent: "" }
 
   ]);
 
   const [expenditures, updateExpenditures] = React.useState([
-    { name: 'Medical Center', value: "", color: '#e3A400' },
-    { name: 'Teaching and Teaching Support', value: "", color: '#f0bf00' },
-    { name: 'Research', value: "", color: '#f6e50e' },
-    { name: 'Student Services and Finacial Aid', value: "", color: '#fff688' },
-    { name: 'Operations and Maintenance (Buildings, etc)', value: "", color: '#5F63EC' },
-    { name: 'Administration', value: "", color: '#71A8FF' },
-    { name: 'Non-Educational Services', value: "", color: '#0F7AB4' },
-    { name: 'Public Service', value: "", color: '#D4E4FF' },
-    { name: 'Depreciation, Interest, etc.', value: "", color: '#FFFFFF' }
+    { name: 'Medical Center', value: "", color: '#e3A400', percent: "" },
+    { name: 'Teaching and Teaching Support', value: "", color: '#f0bf00', percent: "" },
+    { name: 'Research', value: "", color: '#f6e50e', percent: "" },
+    { name: 'Student Services and Finacial Aid', value: "", color: '#fff688', percent: "" },
+    { name: 'Operations and Maintenance (Buildings, etc)', value: "", color: '#5F63EC', percent: "" },
+    { name: 'Administration', value: "", color: '#71A8FF', percent: "" },
+    { name: 'Non-Educational Services', value: "", color: '#0F7AB4', percent: "" },
+    { name: 'Public Service', value: "", color: '#D4E4FF', percent: "" },
+    { name: 'Depreciation, Interest, etc.', value: "", color: '#FFFFFF', percent: "" }
 
   ]);
 
   let resetRevenue = [
-    { name: 'Medical Center', value: "", color: '#f0bf00' },
-    { name: 'Student Fees', value: "", color: '#f6e50e' },
-    { name: 'State of California', value: "", color: '#fff688' },
-    { name: 'Tuition', value: "", color: '#5F63EC' },
-    { name: 'Research Grants and Contracts', value: "", color: '#71A8FF' },
-    { name: 'Pell Grants', value: "", color: '#0F7AB4' },
-    { name: 'Non-Educational Services', value: "", color: '#D4E4FF' },
-    { name: 'Gifts, Endowments, Interest, etc', value: "", color: '#FFFFFF' }
+    { name: 'Medical Center', value: "", color: '#f0bf00', percent: "" },
+    { name: 'Student Fees', value: "", color: '#f6e50e', percent: "" },
+    { name: 'State of California', value: "", color: '#fff688', percent: "" },
+    { name: 'Tuition', value: "", color: '#5F63EC', percent: "" },
+    { name: 'Research Grants and Contracts', value: "", color: '#71A8FF', percent: "" },
+    { name: 'Pell Grants', value: "", color: '#0F7AB4', percent: "" },
+    { name: 'Non-Educational Services', value: "", color: '#D4E4FF', percent: "" },
+    { name: 'Gifts, Endowments, Interest, etc', value: "", color: '#FFFFFF', percent: "" }
 
   ];
   let resetExpenditures = [
-    { name: 'Medical Center', value: "", color: '#e3A400' },
-    { name: 'Teaching and Teaching Support', value: "", color: '#f0bf00' },
-    { name: 'Research', value: "", color: '#f6e50e' },
-    { name: 'Student Services and Finacial Aid', value: "", color: '#fff688' },
-    { name: 'Operations and Maintenance (Buildings, etc)', value: "", color: '#5F63EC' },
-    { name: 'Administration', value: "", color: '#71A8FF' },
-    { name: 'Non-Educational Services', value: "", color: '#0F7AB4' },
-    { name: 'Public Service', value: "", color: '#D4E4FF' },
-    { name: 'Depreciation, Interest, etc.', value: "", color: '#FFFFFF' }
+    { name: 'Medical Center', value: "", color: '#e3A400', percent: "" },
+    { name: 'Teaching and Teaching Support', value: "", color: '#f0bf00', percent: "" },
+    { name: 'Research', value: "", color: '#f6e50e', percent: "" },
+    { name: 'Student Services and Finacial Aid', value: "", color: '#fff688', percent: "" },
+    { name: 'Operations and Maintenance (Buildings, etc)', value: "", color: '#5F63EC', percent: "" },
+    { name: 'Administration', value: "", color: '#71A8FF', percent: "" },
+    { name: 'Non-Educational Services', value: "", color: '#0F7AB4', percent: "" },
+    { name: 'Public Service', value: "", color: '#D4E4FF', percent: "" },
+    { name: 'Depreciation, Interest, etc.', value: "", color: '#FFFFFF', percent: "" }
 
   ];
 
@@ -396,19 +459,21 @@ function App() {
 
 
 
-  function changeRevenue(index, value, percent) {
-    let temp = Number(percent);
+  function changeRevenue(index, value, totalPercent) {
+    let temp = Number(totalPercent);
     updateRevPercent(temp);
 
     revenue[index].value = Number(value);
+    revenue[index].percent = value.toString() + '%';
     console.log(revenue[index]);
     let tempRevenue = [];
     for (let i = 0; i < revenue.length; i++) {
       tempRevenue.push(revenue[i]);
     }
     updateRevenue(tempRevenue);
-    console.log("totalPercent " , percent);
+    console.log("totalPercent " , totalPercent);
     console.log("revenuePercent " , revenuePercent);
+    console.log("changeRevenue.value", value)
     console.log("look at me ", revenue);
   }
 
@@ -418,6 +483,7 @@ function App() {
 
     expenditures[index].value = Number(value);
     console.log(expenditures[index]);
+    expenditures[index].percent = value.toString() + '%';
     let tempExpenditures = [];
     for (let i = 0; i < expenditures.length; i++) {
       tempExpenditures.push(expenditures[i]);
@@ -429,6 +495,8 @@ function App() {
   function resetPage() {
     updateRevenue(resetRevenue);
     updateExpenditures(resetExpenditures);
+    updateRevPercent(0);
+    updateExpPercent(0);
     updatePage(0);
 
   }
@@ -493,12 +561,7 @@ function App() {
         <p id="paragraph1" >Say you got to run the University. How much would you allocate to different sectors?  Learn about your funding sources, with a guessing game.</p>
         <p id="paragraph2">You make your choices by inputting percentages of each section of a pie chart.  See how well your choices match the ones the real Provost made.</p>
       </div>
-      <div className = "progressBarWords">
-        <p className = "revenueWord">REVENUES<span className ="space">&ensp;</span></p>
-        <p className = "e">EXPENSES<span className ="space">&ensp;</span></p>
-        <p className = "compareWord">COMPARE<span className ="space">&ensp;</span></p>
-      </div>
-      <ProgressBar/>
+      
 
       
       <PageHolder revenue={revenue} revenueInfo={revenueInfo} changeRevenue={changeRevenue} actualRevenue={actualRevenue} expenditures={expenditures} expenditureInfo={expenditureInfo} actualExpenditures={actualExpenditures} changeExpenditures = {changeExpenditures} page={page} pageUp={pageUp} pageBack={pageBack} resetPage = {resetPage} revenuePercent= {revenuePercent} expenditurePercent = {expenditurePercent}/>

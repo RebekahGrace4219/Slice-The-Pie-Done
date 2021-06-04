@@ -12,7 +12,7 @@ function PieChartFunctional (props) {
     let dimensions = ({
       width: props.width ? props.width : 200,
       height: props.height ? props.height : 200,
-      padding: props.padding ? props.padding : 50
+      padding: props.padding ? props.padding : 0
     });
  
     const data = [...props.data];

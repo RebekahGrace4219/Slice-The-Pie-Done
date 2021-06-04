@@ -1,3 +1,59 @@
+
+.progressbar li{
+  float: left;
+  width: 33%;
+  position: relative;
+  text-align: center;
+  list-style-type: none;
+}
+
+.progressBar ol{
+  direction: ltr;
+}
+
+
+
+.progressbar li:after{
+  content: "";
+  width: 25px;
+  height: 25px;
+  border: 0px;
+  display: block;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  line-height: 27px;
+  background: #71A8FF;
+  color: #bebebe;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px;
+}
+
+.progressbar li:before{
+  content: '';
+  position: absolute;
+  width:100%;
+  height: 5px;
+  background: #7F8178;
+  top: 10px;
+  left: -50%;
+  z-index: -1;
+}
+/*
+.progressbar li.completed + li:after{
+ border-color: #71A8FF !important;
+ background: #71A8FF !important;
+color: white
+}
+.progressbar li.completed + li:before{
+border-color: white !important;
+background: white !important;
+color: white
+}
+
+
+
+/*
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -200,18 +256,9 @@ ul{
   
 }
 
-#bar1Item1:after{
-  background-color: #71A8FF !important;
-  color: #71A8FF !important; 
-  background: #71A8FF !important;
-
-}
 #bar2Item1:after{
   background-color: #71A8FF;
   color:#71A8FF;
-  
-  background: #71A8FF;
-  
 }
 
 #bar3Item1:after{
@@ -232,4 +279,4 @@ ul{
 .coloredWhite{
   color: white;
   font-weight: 600;
-}
+}*/
