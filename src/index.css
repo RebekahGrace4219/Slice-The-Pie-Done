@@ -78,6 +78,7 @@ code {
 .Inputtext {
   font-family: sans-serif;
   font-size: 15px;
+  align-items: center;
 }
 .textField {
   align-self: flex-end !important;
@@ -163,7 +164,7 @@ content: none;
   width:100%;
   height: 5px;
   background: #7F8178;
-  top: 36px;
+  top: 10px;
   left: -50%;
   z-index: -1;
 }
@@ -184,7 +185,17 @@ color: white
   color: white;
   font-weight: 600;
   font-size: 1em;
-  padding-top: 5px;
   
 
+}
+
+.iconButton {
+  background:transparent;
+  border: none;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+revenueWord{
+  padding-left: 2px;
 }

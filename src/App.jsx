@@ -10,6 +10,7 @@ import SvgIcon from '@material-ui/core/SvgIcon'
 import Tooltip from '@material-ui/core/Tooltip';
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 
 
@@ -36,6 +37,37 @@ const CustomTooltip = withStyles((theme) => ({
   },
 }))(Tooltip); 
 
+function TooltipWrapper(props) {
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
+
+  return(
+    <ClickAwayListener onClickAway={handleTooltipClose}>
+              <CustomTooltip
+                onClose={handleTooltipClose}
+                open={open}
+                title={props.title}
+                arrow
+              >
+                <button className="iconButton" onClick={handleTooltipOpen}>
+                <SvgIcon style={{ fontSize: 15 }}>
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1zm1-8h-2V7h2v2z"   fill= "white"/>
+          </SvgIcon>
+          </button>
+              </CustomTooltip>
+          </ClickAwayListener>
+          );
+
+}
+
 function BasicTextFields(props) {
   function print() {
     console.log("the real value", props.percent);
@@ -53,12 +85,8 @@ function BasicTextFields(props) {
       inputProps={inputProps}
       value={enterValue}
       onChange={(e) => { console.log(e.target.value);
-      // this.setState({value: '40'});
-        
-
-        
-        console.log("props.value " , props.value);
-      
+      console.log("props.value " , props.value);
+    
       let inputPercent = Number(e.target.value);
       console.log("HERE", typeof inputPercent);
       
@@ -76,6 +104,9 @@ function BasicTextFields(props) {
 
       console.log("totalPercent " , totalPercent);
       
+      //inputPercent = toString(inputPercent) + "%";
+
+      console.log("input Percentage is, with percent attached, ", inputPercent);
       props.function(props.index, inputPercent, totalPercent);
       }}
       style={{ width: "70px", textAlign: 'center' }}
@@ -94,11 +125,8 @@ function InputRow(props) {
     <div className="InputRow">
       <div className="leftItems">
         <Circle color={color} />
-        <p className="Inputtext"> {category} <CustomTooltip title={info} placement="bottom" arrow>
-          <SvgIcon style={{ fontSize: 15 }}>
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1zm1-8h-2V7h2v2z" />
-          </SvgIcon>
-        </CustomTooltip></p>
+        <p className="Inputtext"> {category} <TooltipWrapper title={info}>
+        </TooltipWrapper></p>
       </div>
       <BasicTextFields className="textField" function={props.function} index={props.index} value= {props.value} percent = {props.percent} />
     </div>
@@ -466,7 +494,9 @@ function App() {
         <p id="paragraph2">You make your choices by inputting percentages of each section of a pie chart.  See how well your choices match the ones the real Provost made.</p>
       </div>
       <div className = "progressBarWords">
-        <p className = "revenueWord">REVENUES</p><p className = "e">EXPENSES</p><p className = "compareWord">COMPARE</p>
+        <p className = "revenueWord">REVENUES<span className ="space">&ensp;</span></p>
+        <p className = "e">EXPENSES<span className ="space">&ensp;</span></p>
+        <p className = "compareWord">COMPARE<span className ="space">&ensp;</span></p>
       </div>
       <ProgressBar/>
 
