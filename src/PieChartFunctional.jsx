@@ -12,7 +12,7 @@ function PieChartFunctional (props) {
     let dimensions = ({
       width: props.width ? props.width : 200,
       height: props.height ? props.height : 200,
-      padding: props.padding ? props.padding : 0
+      padding: props.padding ? props.padding : 25
     });
  
     const data = [...props.data];
@@ -40,7 +40,7 @@ function PieChartFunctional (props) {
       .attr('id', "pieChart-"+props.name)
       .attr('class', 'chart-content')
       .attr('transform', `translate(
-      ${dimensions.width / 2 + dimensions.padding},
+      ${dimensions.width/ 2 + dimensions.padding},
       ${dimensions.height/2 + dimensions.padding})`);
     },[]);
 

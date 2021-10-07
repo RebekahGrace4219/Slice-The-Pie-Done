@@ -81,9 +81,6 @@ class PieChart extends React.Component {
       .attr('x', pointer[0])
       .attr('y', pointer[1] - 20)
       .attr('fill', this.getColorValue(d.data.color) > 150 ? '#000000' : '#ffffff')
-      // .attr('font-weight', 'bold')
-      // .attr('stroke', this.getColorValue(d.data.color) > 150 ? '#ffffff' : '#000000')
-      // .attr('stroke-width', 0.75)
       .attr('text-anchor', 'middle')
       .attr('id', 'chart-tooltip')
       .text(`${d.data.name} ${d.data.value.toFixed(2)}%`);

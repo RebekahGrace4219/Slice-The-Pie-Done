@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -14,12 +16,7 @@ code {
     monospace;
 }
 
-.bigchungus {
-  flex-direction: column-reverse;
-  font-size: 0;
-  width: 2;
-}
-
+/* Tooltip (the information icon) */
 ._2JvrO {
   z-index: 1;
   background-color: #387cf6 !important;
@@ -53,6 +50,7 @@ code {
   background-color: #387cf6 !important;
 }
 
+/* Progress Bar */
 .progress-step.completed .step-icon:hover .progress-step.current .progress-step, .step-index,
 .progress-step .step-icon{
   display: none;
@@ -69,6 +67,7 @@ code {
 }
 
 
+/* Input fields */
 .InputRow {
   display: flex;
   align-items: center;
@@ -95,7 +94,7 @@ code {
   align-self: center !important;
 }
 
-.kek {
+.inputPropClass {
   color: white !important;
   text-align: center !important;
   
@@ -200,13 +199,13 @@ ul{
   
 }
 
-#bar1Item1:after{
+li#bar1Item1:after{
   background-color: #71A8FF !important;
   color: #71A8FF !important; 
   background: #71A8FF !important;
 
 }
-#bar2Item1:after{
+#bar2Item2:after{
   background-color: #71A8FF;
   color:#71A8FF;
   
@@ -214,7 +213,7 @@ ul{
   
 }
 
-#bar3Item1:after{
+#bar3Item3:after{
   background-color: #71A8FF;
   color:#71A8FF;
 }

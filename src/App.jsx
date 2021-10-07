@@ -12,17 +12,14 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
-
-
+/* Tooltip - to make the information icons and the hover over */
 const inputProps = {
 
   step: 300,
-  className: "kek",
+  className: "inputPropClass",
   style: { textAlign: 'center' }
 
 };
-
-
 
 const CustomTooltip = withStyles((theme) => ({
   arrow: {
@@ -68,6 +65,7 @@ function TooltipWrapper(props) {
 
 }
 
+/* Input creator */
 function BasicTextFields(props) {
   function print() {
     console.log("the real value", props.percent);
@@ -114,17 +112,16 @@ function BasicTextFields(props) {
 
       props.function(props.index, inputPercent, totalPercent);
       }}
-      style={{ width: "70px", textAlign: 'center' }}
+      style={{ width: "70px", minWidth: "70px", textAlign: 'center' }}
     />
   );
 }
 
+/* lines of circle, text, information hover, and input field */
 function InputRow(props) {
   let category = props.name;
   let color = props.color;
   let info = props.info;
-
-
 
   return (
     <div className="InputRow">
@@ -142,7 +139,6 @@ function TotalRow(props) {
   let defaultValue = '';
   if (props.percent >= 100) {
     defaultValue = "100%";
-    console.log("i get here ", defaultValue );
     return(
       <div className= "totalsText">
         <p className = "labelTotal">Total %</p>
@@ -153,7 +149,6 @@ function TotalRow(props) {
     </div>
     );
   } 
-  console.log("props.percent in total: ", props.percent)
   let value = props.percent.toString() + '%';
   
   return(
@@ -170,6 +165,7 @@ function TotalRow(props) {
   
 }
 
+/* Revenues Guess Page */
 function PageOne(props) {
   let revenue = props.revenue;
   let changeRevenue = props.changeRevenue;
@@ -185,7 +181,7 @@ function PageOne(props) {
       <ProgressBar1/>
 
 
-    <h3>UC Davis Revenues</h3>
+    <h3 className = "earlyPageHeading">UC Davis Revenues</h3>
     <div className = "centerPie">
     <PieChartFunctional className="pieCenter" name="pie1" data={revenue} />
     </div>
@@ -206,7 +202,7 @@ function PageOne(props) {
   </div>)
 }
 
-
+/* Expenses guess page */
 function PageTwo(props) {
   let expenditures = props.expenditures;
   let changeExpenditures = props.changeExpenditures;
@@ -220,7 +216,7 @@ function PageTwo(props) {
       </div>
       <ProgressBar2/>
 
-    <h3>UC Davis Expenditures</h3>
+    <h3 className = "earlyPageHeading">UC Davis Expenditures</h3>
     <div className = "centerPie">
     <PieChartFunctional className="pieCenter" name="pie2" data={expenditures} />
     </div>
@@ -244,6 +240,7 @@ function PageTwo(props) {
   </div>)
 }
 
+/* Compare revenues page */
 function PageThree(props) {
   return (
     <div>
@@ -254,11 +251,11 @@ function PageThree(props) {
       </div>
       <ProgressBar3/>
       <h4>RESULTS</h4>
-      <h3>Your Revenue Guess</h3>
+      <h3 className = "latePageHeader">Your Revenue Guess</h3>
       <div className = "centerPie">
       <PieChartFunctional className="pieCenter" name="pie3" data={props.revenue} />
       </div>
-      <h3>Actual Revenue</h3>
+      <h3 className = "latePageHeader">Actual Revenue</h3>
       <div className = "centerPie">
       <PieChartFunctional className="pieCenter" name="pie4" data={props.actualRevenue} />
       </div>
@@ -269,6 +266,7 @@ function PageThree(props) {
   );
 }
 
+/* Compare expenses page */
 function PageFour(props) {
   return (
     <div>
@@ -279,11 +277,11 @@ function PageFour(props) {
       </div>
       <ProgressBar3/>
        <h4>RESULTS</h4>
-      <h3>Your Expenses Guess</h3>
+      <h3 className = "latePageHeader">Your Expenses Guess</h3>
       <div className = "centerPie">
       <PieChartFunctional className="pieCenter" name="pie5" data={props.expenditures} />
       </div>
-      <h3>Your Actual Expenses</h3>
+      <h3 className = "latePageHeader">Your Actual Expenses</h3>
       <div className = "centerPie">
       <PieChartFunctional className="pieCenter" name="pie6" data={props.actualExpenditures} />
       </div>
@@ -294,6 +292,7 @@ function PageFour(props) {
   );
 }
 
+/* A default, in case something goes wrong loading the pages */
 function PageHolder(props) {
   let revenue = props.revenue;
   let revenueInfo = props.revenueInfo;
@@ -319,6 +318,7 @@ function PageHolder(props) {
   return (<div className="Pageholder">{contents}</div>);
 }
 
+/* Progress bar fors the first page, the revenues guess page */
 function ProgressBar1 (props) {
   let stageOne = props.stageOne;
   let stageTwo = props.stageTwo;
@@ -327,7 +327,7 @@ function ProgressBar1 (props) {
   return (
     <div className="container">
           <ul className="progressbar">
-            <li id = "bar1Item1" className = "active"></li>
+            <li className = "active"></li>
             <li></li>
             <li></li>
           </ul>
@@ -335,6 +335,7 @@ function ProgressBar1 (props) {
   );  
 }
 
+/* Progress bar fors the first page, the revenues guess page */
 function ProgressBar2 (props) {
   let stageOne = props.stageOne;
   let stageTwo = props.stageTwo;
@@ -351,6 +352,7 @@ function ProgressBar2 (props) {
   );  
 }
 
+/* Progress bar fors the first page, the revenues guess page */
 function ProgressBar3 (props) {
   let stageOne = props.stageOne;
   let stageTwo = props.stageTwo;
@@ -361,12 +363,13 @@ function ProgressBar3 (props) {
           <ul className="progressbar">
             <li id = "bar3Item1" className = "active"></li>
             <li id = "bar3Item2" className = "active"></li>
-            <li className = "active"></li>
+            <li id = "bar3Item3" className = "active"></li>
           </ul>
       </div>
   );  
 }
 
+/* Circle Svg Creation */
 function Circle(props) {
   return (<svg height="21" width="25">
     <circle cx="7" cy="10" r="7" stroke="black" strokeWidth="0" fill={props.color} />
@@ -376,9 +379,7 @@ function Circle(props) {
 /* App */
 function App() {
 
-
-
-  // initialization
+  // initialization, which given values for the actual numbers
   let actualRevenue = [
     { name: 'Medical Center', value: 45, color: '#f0bf00' },
     { name: 'Student Fees', value: 4, color: '#f6e50e' },
@@ -458,7 +459,7 @@ function App() {
   const [expenditurePercent, updateExpPercent] = React.useState(0);
 
 
-
+  /* Change the revenue circle when an input is made */
   function changeRevenue(index, value, totalPercent) {
     let temp = Number(totalPercent);
     updateRevPercent(temp);
@@ -477,6 +478,7 @@ function App() {
     console.log("look at me ", revenue);
   }
 
+  /* Change the expenditure circle when an input is made */
   function changeExpenditures(index, value, percent) {
     let temp = Number(percent);
     updateExpPercent(temp);
@@ -492,6 +494,7 @@ function App() {
     console.log("look at me ", expenditures);
   }
 
+  /* Set the values of inputs back to nothing, to play again */
   function resetPage() {
     updateRevenue(resetRevenue);
     updateExpenditures(resetExpenditures);
@@ -501,6 +504,7 @@ function App() {
 
   }
 
+  /* move forward a page */
   function pageUp() {
     console.log("Step:", page);
     if (page >= 3) {
@@ -513,6 +517,7 @@ function App() {
     console.log("To Step: ", page)
   }
 
+  /* move back a page */
   function pageBack() {
     console.log("Going from Step:", page);
     if (page <= 0) {
@@ -529,7 +534,7 @@ function App() {
 
 
 
-
+  /* Hardcoded information for the tooltip boxes) */
   let revenueInfo = ['A large, not-for-profit regional medical center, including multiple hospitals, labs and clinics. Income comes from patients, medical insurance companies, and government programs like medicare.', 
     'Fees are dedicated to specific services, such as athletic facilities, bus service (UNITRANS), student organizations, the CoHo and Student Community Center, etc.',
     'General funds given by the taxpayers of California, appropriated annualy by the state legislature. General funds are not dedicated to specific services.',
@@ -539,7 +544,7 @@ function App() {
     "Services other than education that people pay for, like dorms, dining, parking, etc.  At UC Davis, this also includes almost $500M of revenue generated by medical school faculty, or 8%, making this category look really big.",
     "Endowments are past gifts that were invested to provide income; interest is earned on other savings. The Museum is the direct result of a $10M gift from Jan Shrem and Maria Manetti Shrem."]
 
-  //these are out of order
+  
   let expenditureInfo = ["The cost of providing care at the Medical Center is roughly what we get paid to provide it.", 
   "Professors, advisors, deans, the library, the computer labs, etc, including Medical School faculty salaries.", 
   "The costs of doing the research, mostly researcher salaries.", 
@@ -554,11 +559,13 @@ function App() {
 
   console.log("rendering App");
 
+  /*The code carrying this div, with progress bar down to buttons*/
   return (
     <div className ="parentDiv">
       <div id="text">
         <h1 id="header">Slice the Pie</h1>
         <p id="paragraph1" >Say you got to run the University. How much would you allocate to different sectors?  Learn about your funding sources, with a guessing game.</p>
+        <br/>
         <p id="paragraph2">You make your choices by inputting percentages of each section of a pie chart.  See how well your choices match the ones the real Provost made.</p>
       </div>
       

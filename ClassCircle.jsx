@@ -1,3 +1,5 @@
+
+// Circle constrctor, to make the pie chart
 class MyInput extends Component {
   constructor() {
     super();
